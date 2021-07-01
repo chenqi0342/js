@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			function Person() {}
+			var person1 = new Person()
+			//Person 构造函数
+			//person1 实例对象
+
+			Person.prototype.name = 'name'
+			console.log(person1.name) //name 因为构造函数.prototype指向原型，实例会从实例对象（原型）继承属性
+			//所有函数都有prototype,prototpye指向 实例 的原型
+
+			console.log(Person.prototype.constructor === Person) //true 原型通过constructor指向构造函数
+			//所有实例对象都有一个constructor属性，指向构造函数
+
+			console.log(person1._proto_ === Person.prototype) //true 都指向实例对象（原型）
+			//原型：每一个js对象创建的时候，就会关联另一个对象，这个对象就是原型，原型会从对象继承属性。
+			//所有对象都有_proto_属性,这个属性会指向函数的原型
+
+			//原型链：当读取实例的属性时，如果找不到，就会查找原型中的属性，如果还是查不到，就查询原型的原型，只到顶层。
+			Person.prototype.name = 'name2' //原型的属性
+			person1.name = 'name3' //实例的属性
+			console.log(person1.name) //实例的name
+			delete person1.name //删除实例的name
+			console.log(person1.name) //读取原型的name
+
+			//原型的原型
+			var obj = new Object()
+			obj.name = 'name4'
+			console.log(obj.name) //'name4'
+
+			//原型链的顶点 Object.prototype
+		</script>
+	</body>
+</html>
